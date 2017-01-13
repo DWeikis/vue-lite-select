@@ -1,22 +1,22 @@
 <template>
   <div id="app">
-    <simple-select
+    <lite-select
             v-model="user"
             placeholder="Pick User"
             :options="users"
             loadFrom="https://jsonplaceholder.typicode.com/users"
-    ></simple-select>
+    ></lite-select>
     User selected: {{ this.user }}
   </div>
 </template>
 
 <script>
-import SimpleSelect from './components/Select'
+import LiteSelect from './components/Select'
 
 export default {
   name: 'app',
   components: {
-    SimpleSelect
+    LiteSelect
   },
   data () {
     return {
