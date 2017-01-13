@@ -4,24 +4,24 @@ A Vue component to display a dropdown select easily
 
 ## Install / Usage
 ``` bash
-$ npm install vue-simple-select
+$ npm install vue-lite-select
 ```
 
 ```html
 <template>
    <div id="app">
-      <simple-select 
+      <lite-select 
             v-model="user"
             placeholder="Pick User"
             :options="users"
-      ></simple-select >
+      ></lite-select >
    </div>
 </template>
 
 <script>
-import SimpleSelect from 'vue-simple-select'
+import LiteSelect from 'vue-lite-select'
 export default {
-  components: { SimpleSelect },
+  components: { LiteSelect },
   data () {
       return {
         users: [
@@ -40,11 +40,13 @@ export default {
 /* 
  * Passing a placeholder, option with value 0 will be prepended 
  */
+ 
 placeholder: String,
 
 /* 
  * You can pass an api url to get the data asynchronously 
  */
+ 
 loadFrom: {
   type: [String, Boolean],
   default: false
@@ -53,6 +55,7 @@ loadFrom: {
 /* 
  * The field that will be used in the option value
  */
+ 
 keyField: {
   type: String,
   default: 'id'
@@ -61,6 +64,7 @@ keyField: {
 /* 
  * The field that will be used in the label value
  */
+ 
 nameField: {
   type: String,
   default: 'name'
@@ -69,6 +73,7 @@ nameField: {
 /* 
  * The options to be displayed
  */
+ 
 options: {
   type: Array,
   default: function () { return [] }
