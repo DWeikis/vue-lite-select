@@ -1,4 +1,4 @@
-# vue-passport
+# vue-lite-select
 
 A Vue component to display a dropdown select easily
 
