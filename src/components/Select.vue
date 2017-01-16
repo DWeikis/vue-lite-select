@@ -1,7 +1,12 @@
-<script>
+<script lang="babel">
 import axios from 'axios'
 
+import FrameworkWrapper from './FrameworkWrapper.vue'
+
 export default {
+  components: {
+    FrameworkWrapper
+  },
   data () {
     return {
       items: []
@@ -24,6 +29,10 @@ export default {
     options: {
       type: Array,
       default: function () { return [] }
+    },
+    frameworkCss: {
+      type: [String, Boolean],
+      default: false
     }
   },
   created () {
@@ -43,11 +52,16 @@ export default {
 </script>
 
 <template>
-    <select @change="updateValue">
-        <option v-if="placeholder" value="">{{ placeholder }} </option>
-        <option
-                v-for="item in items"
-                :value="item[keyField]"
-        >{{ item[nameField] }}</option>
-    </select>
+    <framework-wrapper :fw="frameworkCss">
+        <select
+                @change="updateValue"
+                :class="{ 'form-group' : frameworkCss == 'bootstrap' }"
+        >
+            <option v-if="placeholder" value="">{{ placeholder }}</option>
+            <option
+                    v-for="item in items"
+                    :value="item[keyField]"
+            >{{ item[nameField] }}</option>
+        </select>
+    </framework-wrapper>
 </template>

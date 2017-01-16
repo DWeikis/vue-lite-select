@@ -79,5 +79,14 @@ options: {
   default: function () { return [] }
 }
 
+/* 
+ * If you want to display the select in your bootstrap / bulma form
+ */
+ 
+frameworkCss: {
+  type: [String, Boolean],
+  default: false
+}
+
 ```
 
