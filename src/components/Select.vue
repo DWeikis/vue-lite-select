@@ -45,7 +45,16 @@ export default {
   },
   methods: {
     updateValue (event) {
-      this.$emit('input', event.target.value)
+      let id = event.target.value
+      let selectedItem = this.items.find(item => item[this.keyField] == id)
+
+      this.$emit('input', id)
+      this.$emit('selected', selectedItem)
+    }
+  },
+  watch: {
+    options(options) {
+      this.items = options
     }
   }
 }
