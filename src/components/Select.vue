@@ -9,7 +9,8 @@ export default {
   },
   data () {
     return {
-      items: []
+      items: [],
+      selected: ''
     }
   },
   props: {
@@ -49,7 +50,7 @@ export default {
       let selectedItem = this.items.find(item => item[this.keyField] == id)
 
       this.$emit('input', id)
-      this.$emit('selected', selectedItem)
+      this.$emit('selected', selectedItem ? selectedItem : {})
     }
   },
   watch: {
@@ -63,6 +64,7 @@ export default {
 <template>
     <framework-wrapper :fw="frameworkCss">
         <select
+                v-model="selected"
                 @change="updateValue"
                 :class="{ 'form-group' : frameworkCss == 'bootstrap' }"
         >
