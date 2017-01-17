@@ -1,6 +1,6 @@
 {
   "name": "vue-lite-select",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A Vue component to display a dropdown select easily",
   "author": "disitec <fjmartinez@disitec.es>",
   "scripts": {
