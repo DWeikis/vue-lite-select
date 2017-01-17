@@ -14,6 +14,9 @@ export default {
     }
   },
   props: {
+    value: {
+      default: ''
+    },
     placeholder: String,
     loadFrom: {
       type: [String, Boolean],
@@ -45,18 +48,20 @@ export default {
     }
   },
   methods: {
-    updateValue (event) {
-      let id = event.target.value
-      let selectedItem = this.items.find(item => item[this.keyField] == id)
+    updateValue () {
+      let selectedItem = this.items.find(item => item[this.keyField] === this.selected)
 
-      this.$emit('input', id)
-      this.$emit('selected', selectedItem ? selectedItem : {})
+      this.$emit('input', this.selected)
+      this.$emit('selected', selectedItem || {})
     }
   },
   watch: {
-    options(options) {
+    options (options) {
       this.items = options
       this.selected = ''
+    },
+    value (value) {
+      this.selected = value
     }
   }
 }

@@ -1,8 +1,8 @@
 <script lang="babel">
     export default{
-        props: [
-            'fw'
-        ]
+      props: [
+        'fw'
+      ]
     }
 </script>
 <template>
