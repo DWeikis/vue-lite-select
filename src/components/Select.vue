@@ -50,7 +50,7 @@ export default {
     }
   },
   mounted () {
-    // this.listenOutSideClick()
+    this.listenOutSideClick()
   },
   methods: {
     updateValue (id) {
@@ -61,13 +61,6 @@ export default {
       this.$emit('input', id)
       this.$emit('selected', selectedItem || {})
     },
-    showSelectContainer () {
-      if (this.selectContainer === true) {
-        this.selectContainer = false
-      } else {
-        this.selectContainer = true
-      }
-    },
     filteredOptions () {
       if (!this.search) {
         return this.items
@@ -75,15 +68,16 @@ export default {
       return this.items.filter(item => {
         return item.name.toLowerCase().indexOf(this.search.toLowerCase()) > -1
       })
-    }
-    /* listenOutSideClick () {
+    },
+    listenOutSideClick () {
       var self = this
       document.addEventListener('click', (event) => {
-        if (!document.querySelector('.input-search').contains(event.target)) {
+        if (!document.querySelector('.select-search').contains(event.target)) {
+          console.log('paco')
           self.selectContainer = false
         }
       })
-    }, */
+    }
   },
   watch: {
     options (options) {
@@ -100,15 +94,14 @@ export default {
 <template>
     <framework-wrapper :fw="frameworkCss">
       <div class="select-search">
-      <form>
-        <input v-on:change="filteredOptions()" class="input-search" v-model="search" v-on:click="showSelectContainer()" placeholder="placeholder">
+        <input v-on:change="filteredOptions()" class="input-search" v-model="search" placeholder="placeholder" @click="selectContainer = true"><a @click="selectContainer = ! selectContainer" class="select-icon"><i class="icono-caretRight" :class="{'icono-caretDown' : selectContainer == true}"></i></a>
         <div v-show="selectContainer" class="select-container">
           <div class="select-options" v-for="item in filteredOptions()" v-on:click="updateValue(item[keyField])">{{ item[nameField] }}</div>
         </div>
       </div>
-      </form>
     </framework-wrapper>
 </template>
+
 <style>
 ul {
   list-style:none;
@@ -132,8 +125,8 @@ input:focus {
   position: relative;
   z-index: 2;
   padding: 8px;
-  width: auto; 
-  border: 2px solid transparent;
+  width: 73%; 
+  border-color: transparent;
   border-radius: 2px 2px 0 0
 }
 .select-container {
@@ -144,7 +137,6 @@ input:focus {
   max-height: 200px;
   overflow-y: scroll;
   border: 2px solid #d5d5d5;
-  border-top: 1px solid #d5d5d5;
   background: white;
   border-radius: 0 0 2px 2px;
   outline: 0;
@@ -161,10 +153,15 @@ input:focus {
   cursor: pointer;
 }
 
+.select-icon {
+  clear: right;
+  cursor: pointer;
+}
+
 @-webkit-keyframes slideInDown {
   from {
-    -webkit-transform: translate3d(0, -100%, 0);
-    transform: translate3d(0, -100%, 0);
+    -webkit-transform: translate3d(0, -30px, 0);
+    transform: translate3d(0, -30px, 0);
     visibility: visible;
   }
 
@@ -176,8 +173,8 @@ input:focus {
 
 @keyframes slideInDown {
   from {
-    -webkit-transform: translate3d(0, -100%, 0);
-    transform: translate3d(0, -100%, 0);
+    -webkit-transform: translate3d(0, -30px, 0);
+    transform: translate3d(0, -30px, 0);
     visibility: visible;
   }
 
